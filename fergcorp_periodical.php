@@ -18,6 +18,47 @@ Author URI: http://wpmu.org
  * query_var => true provides automatic filtering of posts if issue in querystring!
  *
  */
+function mag_custom_taxonomy_volume()  {
+
+	$labels = array(
+		'name'                       => _x( 'Volumes', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Volume', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Volumes', 'text_domain' ),
+		'all_items'                  => __( 'All Volumes', 'text_domain' ),
+		'parent_item'                => __( 'Parent Volume', 'text_domain' ),
+		'parent_item_colon'          => __( 'Parent Volume:', 'text_domain' ),
+		'new_item_name'              => __( 'New Volume Name', 'text_domain' ),
+		'add_new_item'               => __( 'Add New Volume', 'text_domain' ),
+		'edit_item'                  => __( 'Edit Volume', 'text_domain' ),
+		'update_item'                => __( 'Update Volume', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Separate volumes with commas', 'text_domain' ),
+		'search_items'               => __( 'Search volumes', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or remove volumes', 'text_domain' ),
+		'choose_from_most_used'      => __( 'Choose from the most used volumes', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+		'query_var'					 => true,
+		'rewrite'					 => false,
+	);
+	register_taxonomy( 'volume', 'post', $args );
+}
+
+// Register the Issue taxonomy via the init action
+add_action( 'init', 'mag_custom_taxonomy_volume' );
+
+/* 
+ * Register the Issues Custom Taxonomy
+ *
+ * query_var => true provides automatic filtering of posts if issue in querystring!
+ *
+ */
 function mag_custom_taxonomy_issue()  {
 
 	$labels = array(
